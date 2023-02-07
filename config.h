@@ -1,8 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
+// #define TERMINAL "alacritty"
+// #define TERMCLASS "Alacritty"
 #define TERMINAL "alacritty"
-#define TERMCLASS "alacritty"
+#define TERMCLASS "Alacritty"
 #define BROWSER "firefox"
 
 /* appearance */
@@ -10,29 +12,22 @@ static unsigned int borderpx = 3; /* border pixel of windows */
 static unsigned int snap = 32;    /* snap pixel */
 static unsigned int gappih = 6;   /* horiz inner gap between windows */
 static unsigned int gappiv = 4;   /* vert inner gap between windows */
-static unsigned int gappoh =
-    2; /* horiz outer gap between windows and screen edge */
-static unsigned int gappov =
-    2; /* vert outer gap between windows and screen edge */
-static int swallowfloating =
-    0; /* 1 means swallow floating windows by default */
-static int smartgaps =
-    1;                  /* 1 means no outer gap when there is only one window */
+static unsigned int gappoh = 2; /* horiz outer gap between windows and screen edge */
+static unsigned int gappov = 2; /* vert outer gap between windows and screen edge */
+static int swallowfloating = 0; /* 1 means swallow floating windows by default */
+static int smartgaps = 1;                  /* 1 means no outer gap when there is only one window */
 static int showbar = 1; /* 0 means no bar */
 static int topbar = 1;  /* 0 means bottom bar */
-static const unsigned int systraypinning =
-    1; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
+static const unsigned int systraypinning = 1; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
           X */
 static const unsigned int systrayspacing = 2; /* systray spacing */
-static const int systraypinningfailfirst =
-    1; /* 1: if pinning fails, display systray on the first monitor, False:
-          display systray on the last monitor*/
+static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
 
 static char *fonts[] = {
-    "Iosevka Etoile:pixelsize=12:antialias=true:autohint=true",
-    "JoyPixels:pixelsize=12:antialias=true:autohint=true",
-    "Nerd-Symbols:pixelsize=12:antialias=true:autohint=true"};
+    "Iosevka Etoile:pixelsize=14:antialias=true:autohint=true",
+    "JoyPixels:pixelsize=14:antialias=true:autohint=true",
+    "Nerd-Symbols:pixelsize=14:antialias=true:autohint=true"};
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[] = "#bbbbbb";
@@ -71,7 +66,7 @@ static const Rule rules[] = {
     /* class    instance      title       	 tags mask    isfloating
        isterminal  noswallow  monitor */
     {"Gimp", NULL, NULL, 1 << 8, 0, 0, 0, -1},
-    {"Spotify", NULL, "Sotify", 1 << 2, 0, 0, 0, -1},
+    {"Spotify", NULL, "Spotify", 1 << 2, 0, 0, 0, -1},
     {"firefox", NULL, NULL, 1 << 1, 0, 0, 0, -1},
     {TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
@@ -130,7 +125,7 @@ static const Layout layouts[] = {
   }
 
 /* commands */
-static const char dmenufont[] = "Iosevka:size=10";
+static const char dmenufont[] = "Iosevka Etoile:size=10";
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {"dmenu_run", "-m",  dmenumon,       "-fn",
@@ -219,9 +214,9 @@ static Key keys[] = {
 
     {MODKEY, XK_a, togglegaps, {0}},
     {MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
-    // {MODKEY, XK_s, spawn, {.v = (const char *[]){"drag", NULL}}},
-    // {MODKEY | ShiftMask, XK_s, spawn, {.v = (const char *[]){"share", NULL}}},
-    {MODKEY , XK_s, togglesticky, {0}},
+    // {MODKEY, XK_s, spawn, {.v = (const char *[]){"share", NULL}}},
+    {MODKEY, XK_s, spawn, {.v = (const char *[]){"drop", NULL}}},
+    {MODKEY | ShiftMask, XK_s, togglesticky, {0}},
     {MODKEY, XK_d, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask,
      XK_d,
